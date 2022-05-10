@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.nttdata.bank.customer.client.AccountClientRest;
 import com.nttdata.bank.customer.client.PersonClientRest;
 import com.nttdata.bank.customer.dto.CustomerDTO;
 import com.nttdata.bank.customer.model.Customer;
@@ -23,6 +24,9 @@ public class CustomerServiceImpl implements CustomerService{
 	private PersonClientRest personClientRest;
 	
 	@Autowired
+	private AccountClientRest accountClientRest;
+	
+	@Autowired
 	private JsonMapper jsonMapper;
 	
 	
@@ -40,7 +44,14 @@ public class CustomerServiceImpl implements CustomerService{
 													 c.setPersons(p);
 													 return c;
 												 }
-										 )
+												)
+										 .zipWith(accountClientRest.findByCustomerId(customer.get_id())
+												 .collectList(),
+												 (c, a) -> {
+													 c.setAccount(a);
+													 return c;
+												  }
+												 )
 							);
 	}
 	
@@ -57,7 +68,14 @@ public class CustomerServiceImpl implements CustomerService{
 													 c.setPersons(p);
 													 return c;
 												 }
-										)
+												)
+										.zipWith(accountClientRest.findByCustomerId(customer.get_id())
+												 .collectList(),
+												 (c, a) -> {
+													 c.setAccount(a);
+													 return c;
+												  }
+												 )
 							);
 	}
 	
