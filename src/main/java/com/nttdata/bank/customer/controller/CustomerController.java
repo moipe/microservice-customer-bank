@@ -43,4 +43,12 @@ public class CustomerController {
 		
 	}
 
+	
+	@GetMapping("/customer/{id}")
+	private Mono<Customer> showCustomerInformationById(@PathVariable String id){
+		
+		return customerService.showCustomerInformationById(id);
+		
+	}
+	
 }

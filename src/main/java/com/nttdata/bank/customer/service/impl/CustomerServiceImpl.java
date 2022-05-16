@@ -89,4 +89,9 @@ public class CustomerServiceImpl implements CustomerService{
 		return jsonMapper.convertValue(customer, CustomerDTO.class);
 	}
 
+	@Override
+	public Mono<Customer> showCustomerInformationById(String id) {
+		return customerRepository.findById(id);
+	}
+
 }

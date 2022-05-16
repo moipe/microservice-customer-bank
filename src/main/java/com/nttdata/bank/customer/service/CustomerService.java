@@ -13,5 +13,7 @@ public interface CustomerService {
 	Mono<CustomerDTO> findById(String id);
 	
 	Mono<Customer> save(Customer customer);
+	
+	Mono<Customer> showCustomerInformationById(String id);
 
 }
