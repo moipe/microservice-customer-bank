@@ -19,6 +19,9 @@ public class Customer {
 	@Id
 	private String _id;
 	
+	/*TIPOS DE CLIENTES*/
+	// 1 -> Personal
+	// 2 -> Empresarials
 	private String type;
 	
 	@JsonInclude(Include.NON_NULL)
