@@ -29,6 +29,6 @@ public class Account {
 	
 	private Product product;
 	
-	private List<Transaction> transactions = new ArrayList<Transaction>();
+	private List<Movement> movements = new ArrayList<Movement>();
 
 }
